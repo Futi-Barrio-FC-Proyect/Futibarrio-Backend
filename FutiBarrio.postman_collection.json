@@ -1,0 +1,886 @@
+{
+	"info": {
+		"_postman_id": "d969ca32-1259-4103-8a77-88b318561150",
+		"name": "FutiBarrio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Peticiones Usuario",
+			"item": [
+				{
+					"name": "Mostrar usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/usuarios/mostrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"mostrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Lucas NOOO\",\r\n    \"usuario\": \"LucasUwU\",\r\n    \"password\": \"123456\",\r\n    \"rol\": \"JUGADOR_ROLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuarios/agregar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuario se registra",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"YOOOO\",\r\n    \"usuario\": \"nooo\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuarios/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "El usuario edita su cuenta",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDliZGYzMTQ3NzllZDJkZTliN2I5ZDYiLCJpYXQiOjE2ODg0MTQyMDUsImV4cCI6MTY4ODQzMjIwNX0.ivSNiDUPcmx9xPIen8WNFpOZLGVaQh4HNXGzGhlfvuQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"YOOOO\",\r\n    \"usuario\": \"ultimoooo\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuarios/editarmicuenta/64a3268d629bb136b00ba29b",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"editarmicuenta",
+								"64a3268d629bb136b00ba29b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario elimina su cuenta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/usuarios/eliminarmicuenta/64a3268d629bb136b00ba29b",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"eliminarmicuenta",
+								"64a3268d629bb136b00ba29b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Lucas\",\r\n    \"usuario\": \"LucasUw\",\r\n    \"password\": \"123456\",\r\n    \"rol\": \"USUARIO_ROLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuarios/editar/64a32484fba3aea4b32c596d",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"editar",
+								"64a32484fba3aea4b32c596d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/usuarios/eliminar/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"eliminar",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Peticiones Jugador",
+			"item": [
+				{
+					"name": "Mostrar jugador/participante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/jugador/mostrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"jugador",
+								"mostrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar jugador/participante",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"xd\",\r\n    \"nombreCamiseta\": \"El n\",\r\n    \"numerojugador\": 30,\r\n    \"edad\": 38,\r\n    \"equiposParticipado\": \"Paris, Real Madrid\",\r\n    \"golesMarcados\": 900,\r\n    \"posición\": \"delantero\",\r\n    \"partidos\": 1000,\r\n    \"reconocimientos\": \"8 balones de oro, copa mundial, champions\",\r\n    \"estado\": \"true\",\r\n    \"rol\": \"JUGADOR_ROLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/jugador/agregar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"jugador",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar jugador/participante",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Leonel Andres Messi Lopez\",\r\n    \"nombreCamiseta\": \"Leo MessiIIIIIIIIIIIIIIIII\",\r\n    \"numerojugador\": 30,\r\n    \"edad\": 38,\r\n    \"equpoActual\": \"Paris\",\r\n    \"equposParticipado\": \"Paris, Barcelona\",\r\n    \"golesMarcados\": 900,\r\n    \"posición\": \"delantero\",\r\n    \"partidos\": 1000,\r\n    \"reconocimientos\": \"8 balones de oro, copa mundial, champions\",\r\n    \"estado\": \"true\",\r\n    \"rol\": \"JUGADOR_ROLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/jugador/editar/649773f7a4f207accc33056d",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"jugador",
+								"editar",
+								"649773f7a4f207accc33056d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar jugador/participante",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/jugador/eliminar/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"jugador",
+								"eliminar",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Peticiones Equipo",
+			"item": [
+				{
+					"name": "Mostrar equipos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/equipo/mostrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"equipo",
+								"mostrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar equipo ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Insanos FC\",\r\n    \"descripcion\": \"Equipo de sexto B, el mejor equipo\",\r\n    \"logros\": \"Tercer lugar en campeonato\",\r\n    \"director\": \"Victor\",\r\n    \"puntaje\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/equipo/agregar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"equipo",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar jugadores al equipo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"equipoId\": \"64a1cd65d7f31e94f6787d82\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/equipo/agregarJugador/649bdfbd08e1c9f76ee243c1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"equipo",
+								"agregarJugador",
+								"649bdfbd08e1c9f76ee243c1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar jugador de equipo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"equipoId\": \"64a1cd65d7f31e94f6787d82\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/equipo/eliminarJugador/649bdff608e1c9f76ee243c4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"equipo",
+								"eliminarJugador",
+								"649bdff608e1c9f76ee243c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar equipo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Insanos FC\",\r\n    \"descripcion\": \"Equipo de sexto B, el mejor equipo\",\r\n    \"logros\": \"Primer lugar en campeonato\",\r\n    \"director\": \"Checo\",\r\n    \"puntaje\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/equipo/editar/64a1cd65d7f31e94f6787d82",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"equipo",
+								"editar",
+								"64a1cd65d7f31e94f6787d82"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Equipo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/equipo/eliminar/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"equipo",
+								"eliminar",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Peticiones Liga",
+			"item": [
+				{
+					"name": "Mostrar ligas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/liga/mostrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"liga",
+								"mostrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar liga",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Super V.H.2\",\r\n    \"capacidad\": 12,\r\n    \"descripcion\": \"Liga con capacidad de 12 equipos solo participantes de villa hermsoa 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/liga/agregar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"liga",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar un equipo a liga",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ligaId\": \"64a303e2c89fdc3018107ff1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/liga/agregarEquipo/64a30481cdd02463cb671c21",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"liga",
+								"agregarEquipo",
+								"64a30481cdd02463cb671c21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar equipo de liga",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ligaId\": \"64a303e2c89fdc3018107ff1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/liga/eliminarEquipo/64a30481cdd02463cb671c21",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"liga",
+								"eliminarEquipo",
+								"64a30481cdd02463cb671c21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar liga",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Super V.H.2\",\r\n    \"capacidad\": 15,\r\n    \"descripcion\": \"Liga con capacidad de 12 equipos solo participantes de villa hermsoa 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/liga/editar/64a303e2c89fdc3018107ff1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"liga",
+								"editar",
+								"64a303e2c89fdc3018107ff1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar liga",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/liga/eliminar/64a303e2c89fdc3018107ff1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"liga",
+								"eliminar",
+								"64a303e2c89fdc3018107ff1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Peticiones Partidos",
+			"item": [
+				{
+					"name": "Mostrar partidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/partido/mostrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"partido",
+								"mostrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar un partido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"la Gran fianl\",\r\n    \"fecha\": \"01/08/2023\",\r\n    \"liga\": \"Super V.H.2\",\r\n    \"equipo1\": \"Insanos FC\",\r\n    \"equipo2\": \"Rudos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/partido/agregar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"partido",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Partido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"la Gran final\",\r\n    \"fecha\": \"01/08/2023\",\r\n    \"liga\": \"Super V.H.\",\r\n    \"equipo1\": \"Insanos F\",\r\n    \"equipo2\": \"Rudo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/partido/editar/64a31c26cec9df50b5c1114a",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"partido",
+								"editar",
+								"64a31c26cec9df50b5c1114a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar partido",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/partido/eliminar/64a31c26cec9df50b5c1114a",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"partido",
+								"eliminar",
+								"64a31c26cec9df50b5c1114a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "peticiones comentario",
+			"item": [
+				{
+					"name": "Mostrar comentarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/comentario/mostrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comentario",
+								"mostrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar comentario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGEzMjQ4NGZiYTNhZWE0YjMyYzU5NmQiLCJpYXQiOjE2ODg0MTYxMjMsImV4cCI6MTY4ODQzNDEyM30.y25GtB_245hH3ZCcFWLSN5YjKYMbRG2xeQDvbJGmvEs",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comentario\": \"Este partido no me gusto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/comentario/agregar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comentario",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar comentario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/comentario/eliminar/64a33153a0867362c5bd398c",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comentario",
+								"eliminar",
+								"64a33153a0867362c5bd398c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "El que hizo el comentario lo elimina",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGEzMjQ4NGZiYTNhZWE0YjMyYzU5NmQiLCJpYXQiOjE2ODg0MTgxNDEsImV4cCI6MTY4ODQzNjE0MX0.TSUgBZprJg7v0HvsBhUOQT9-RImw9G_-gSpC1AcBQUo",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/comentario/eliminarPorUsuario/64a331780414f321439731dc",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comentario",
+								"eliminarPorUsuario",
+								"64a331780414f321439731dc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario\": \"@AdminShiro\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
