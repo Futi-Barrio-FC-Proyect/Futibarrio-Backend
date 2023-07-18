@@ -6,7 +6,7 @@ const { getUsuarios, postUsuario, putUsuario, deleteUsuario, registroUsuario, de
 const { esRoleValido, existeUsuarioPorId, existeUsuario } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
-const { esAdminAppRole, esAdminCampRole } = require('../middlewares/validar-roles');
+const { esAdminAppRole, sonAdmins } = require('../middlewares/validar-roles');
 
 const router = Router();
 
@@ -17,8 +17,7 @@ router.get('/mostrar', [
 
 router.post('/agregar', [
     validarJWT,
-    esAdminAppRole,
-    esAdminCampRole,
+    sonAdmins,
     check('nombre', 'El nombre es obligatorio para el post').not().isEmpty(),
     check('usuario', 'El usuario es obligatorio para registrase').not().isEmpty(),
     check('usuario').custom(existeUsuario),
@@ -26,14 +25,14 @@ router.post('/agregar', [
     check('password', 'La passwarod debe ser mayor a 6 letras').isLength({ min: 6 }),
     check('rol', 'El rol es obligatorio para el post').not().isEmpty(),
     check('rol').custom(esRoleValido),
-    validarCampos
+    validarCampos,
+    
 ], postUsuario);
 
 
 router.put('/editar/:id', [
     validarJWT,
-    esAdminAppRole,
-    esAdminCampRole,
+    sonAdmins,
     check('id', 'No es un ID valido').isMongoId(),
     check('id').custom(existeUsuarioPorId),
     check('usuario').custom(existeUsuario),
@@ -45,8 +44,7 @@ router.put('/editar/:id', [
 
 router.delete('/eliminar/:id', [
     validarJWT,
-    esAdminAppRole,
-    esAdminCampRole,
+    sonAdmins,
     check('id', 'No es un ID valido').isMongoId(),
     check('id').custom(existeUsuarioPorId),
     validarCampos
