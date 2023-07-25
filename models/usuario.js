@@ -22,7 +22,6 @@ const UsuarioSchema = Schema({
         required: [true, 'El rol es obligatorio'],
         default: 'USUARIO_ROLE'
     },
-
 });
 
 module.exports = model('Usuario', UsuarioSchema)

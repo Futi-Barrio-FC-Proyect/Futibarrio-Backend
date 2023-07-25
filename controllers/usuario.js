@@ -6,6 +6,7 @@ const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuario');
 const Role = require('../models/role');
 const { generarJWT } = require('../helpers/generar-jwt');
+const Comentario = require('../models/comentario');
 
 //funcion para crear un admin por defecto
 const defaultAdminApp = async () => {
@@ -178,11 +179,14 @@ const getMyInfo = async (req = request, res = response) => {
     const usuarioId = req.usuario.id;
     console.log(usuarioId);
 
-    const usuarioById = await Usuario.findById(usuarioId)
+    const usuarioById = await Usuario.findById(usuarioId);
+
+    const comentariosUsuario = await Comentario.find({ usuario: usuarioId });
 
     res.json({
         msg: 'Mi informacion',
-        usuarioById
+        usuarioById,
+        comentariosUsuario
     })
 }
 
