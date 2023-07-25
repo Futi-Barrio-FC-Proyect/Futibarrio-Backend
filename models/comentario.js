@@ -9,6 +9,11 @@ const ComentarioSchema = Schema({
     comentario: {
         type: String,
     },
+    liga: {
+        type: Schema.Types.ObjectId,
+        ref: 'Liga',
+        required: true
+    },
 });
 
 module.exports = model('Comentario', ComentarioSchema);

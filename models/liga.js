@@ -18,6 +18,10 @@ const LigaSchema = Schema({
         type: Array,
         default: [],
     },
+    comentario: {
+        type: Array,
+        default: [],
+    },
     img: {
         type: String
     },

@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 
 const { getComentario, postComentario, deleteComentario, deleteComentarioUsuario, PutComentarioUsuario } = require('../controllers/comentarios');
-const { existecomentarioPorId } = require('../helpers/db-validators');
+const { existecomentarioPorId, existeLigaPorId } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 const { esAdminAppRole } = require('../middlewares/validar-roles');
@@ -15,6 +15,8 @@ router.get('/mostrar', getComentario);
 router.post('/agregar', [
     validarJWT,
     check('comentario', 'El comentario es obligatorio').not().isEmpty(),
+    check('liga', 'El ID de la liga a la que pertenecerá el comentario es obluigatorio').not().isEmpty(),
+    check('liga').custom(existeLigaPorId),
     validarCampos
 ], postComentario);
 
