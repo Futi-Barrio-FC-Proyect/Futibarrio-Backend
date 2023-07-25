@@ -5,6 +5,7 @@ const bcryptjs = require('bcryptjs');
 //Modelos
 const Usuario = require('../models/usuario');
 const Role = require('../models/role');
+const { generarJWT } = require('../helpers/generar-jwt');
 
 //funcion para crear un admin por defecto
 const defaultAdminApp = async () => {
@@ -28,13 +29,12 @@ const defaultAdminApp = async () => {
 
 const getUsuarios = async (req = request, res = response) => {
 
-    const listaUsuarios = await Promise.all([
-        Usuario.countDocuments(),
-        Usuario.find()
-    ]);
+    const listaUsuarios = await Usuario.find();
+    const cantidadUsuarios = await Usuario.countDocuments();
 
     res.json({
         msg: 'Mostrando todos los usuarios existentes',
+        cantidadUsuarios,
         listaUsuarios
     });
 
@@ -118,12 +118,17 @@ const registroUsuario = async (req = request, res = response) => {
     const usuarioRegistrado = new Usuario({ nombre, usuario, password });
     const salt = bcryptjs.genSaltSync();
     usuarioRegistrado.password = bcryptjs.hashSync(password, salt);
-
+    
     await usuarioRegistrado.save();
+
+    const usuarioId = await Usuario.findOne( { usuario } );
+    //Generar JWT
+    const token = await generarJWT( usuarioId.id, usuarioId.rol );
 
     res.status(201).json({
         msg: 'Nuevo usuario registrado',
-        usuarioRegistrado
+        usuarioRegistrado,
+        token
 
     })
 
@@ -169,6 +174,18 @@ const updateCuentaUsuario = async (req = request, res = response) => {
     }
 }
 
+const getMyInfo = async (req = request, res = response) => {
+    const usuarioId = req.usuario.id;
+    console.log(usuarioId);
+
+    const usuarioById = await Usuario.findById(usuarioId)
+
+    res.json({
+        msg: 'Mi informacion',
+        usuarioById
+    })
+}
+
 module.exports = {
     defaultAdminApp,
     getUsuarios,
@@ -177,5 +194,6 @@ module.exports = {
     deleteUsuario,
     registroUsuario,
     deleteCuentaUsuario,
-    updateCuentaUsuario
+    updateCuentaUsuario,
+    getMyInfo
 }

@@ -5,6 +5,7 @@ const Equipo = require('../models/equipo');
 const Liga = require('../models/liga');
 const Partido = require('../models/partidos');
 const comentario = require('../models/comentario');
+const noticias = require('../models/noticias');
 
 const esRoleValido = async (rol = '') => {
     //Verificar si el rol es valido y existe en la DB
@@ -122,6 +123,16 @@ const existecomentarioPorId = async (id) => {
 
 }
 
+const existenoticiaPorId = async (id) => {
+
+    //Verificar si existe el ID
+    const existIdOfNoticia = await noticias.findById(id);
+    if (!existIdOfNoticia) {
+        throw new Error(`El id la noticia: ${id} no existe en la DB`);
+    }
+
+}
+
 
 module.exports = {
     esRoleValido,
@@ -137,4 +148,5 @@ module.exports = {
     existeNombreLigaP,
     existeNombreEquipoP,
     existecomentarioPorId,
+    existenoticiaPorId,
 }

@@ -8,13 +8,12 @@ const Jugador = require('../models/jugadore');
 
 const getEquipo = async (req = request, res = response) => {
 
-    const listaEquipos = await Promise.all([
-        Equipo.countDocuments(),
-        Equipo.find()
-    ]);
+    const listaEquipos = await Equipo.find();
+    const cantidaEquipos = await Equipo.countDocuments();
 
     res.json({
         msg: 'Mostrando todos los equipos existentes',
+        cantidaEquipos,
         listaEquipos
     });
 

@@ -22,6 +22,9 @@ const PartidosSchema = Schema({
         type: String,
         required: true,
     },
+    img: {
+        type: String
+    },
 });
 
 module.exports = model('Partidos', PartidosSchema);

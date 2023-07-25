@@ -32,10 +32,16 @@
 					"name": "Agregar usuario",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJlZWQ1NjJiODY5NWQxM2RmMzE3MjciLCJpYXQiOjE2OTAyMzQ1MDYsImV4cCI6MTY5MDI1MjUwNn0.19ne7cbVvZ6SA1R07-02abaMWJZVrxVkwD8_fSaZIiU",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Lucas NOOO\",\r\n    \"usuario\": \"LucasUwU\",\r\n    \"password\": \"123456\",\r\n    \"rol\": \"JUGADOR_ROLE\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Mynor Hernandez\",\r\n    \"usuario\": \"mHernandez\",\r\n    \"password\": \"123456\",\r\n    \"rol\": \"ADMIN_CAMP_ROLE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -64,7 +70,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"YOOOO\",\r\n    \"usuario\": \"nooo\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Shiro William Salas Pérez\",\r\n    \"usuario\": \"ssalas\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -202,6 +208,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Mi información perfil",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJlZjk1ODA5ZGEwYzI0MmZhMDg1YmUiLCJpYXQiOjE2OTAyMzcyNzIsImV4cCI6MTY5MDI1NTI3Mn0.0_MDfrqdq3A7bSj964Z3nz8sjspbmtZrV0Ru0YpZjEA",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/usuarios/buscarId",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"buscarId"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -232,7 +264,13 @@
 					"name": "Agregar jugador/participante",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-token",
+								"value": "",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"nombre\": \"xd\",\r\n    \"nombreCamiseta\": \"El n\",\r\n    \"numerojugador\": 30,\r\n    \"edad\": 38,\r\n    \"equiposParticipado\": \"Paris, Real Madrid\",\r\n    \"golesMarcados\": 900,\r\n    \"posición\": \"delantero\",\r\n    \"partidos\": 1000,\r\n    \"reconocimientos\": \"8 balones de oro, copa mundial, champions\",\r\n    \"estado\": \"true\",\r\n    \"rol\": \"JUGADOR_ROLE\"\r\n}",
@@ -366,10 +404,16 @@
 					"name": "Agregar jugadores al equipo",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJlZWQ1NjJiODY5NWQxM2RmMzE3MjciLCJpYXQiOjE2OTAyMzQ1MDYsImV4cCI6MTY5MDI1MjUwNn0.19ne7cbVvZ6SA1R07-02abaMWJZVrxVkwD8_fSaZIiU",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"equipoId\": \"64a1cd65d7f31e94f6787d82\"\r\n}",
+							"raw": "{\r\n   \"equipoId\": \"64bef0b62b8695d13df31738\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -377,7 +421,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/equipo/agregarJugador/649bdfbd08e1c9f76ee243c1",
+							"raw": "localhost:8080/api/equipo/agregarJugador/64bef429a4e891cdca564f00",
 							"host": [
 								"localhost"
 							],
@@ -386,7 +430,7 @@
 								"api",
 								"equipo",
 								"agregarJugador",
-								"649bdfbd08e1c9f76ee243c1"
+								"64bef429a4e891cdca564f00"
 							]
 						}
 					},
@@ -502,7 +546,13 @@
 					"name": "Agregar liga",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJlZWM1YzJiODY5NWQxM2RmMzE3MGMiLCJpYXQiOjE2OTAyMzQwOTcsImV4cCI6MTY5MDI1MjA5N30.ACfJ2O8Vqb4lO-X75IpXLIfbuFhAPwzyuYWXpPKmOB4",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"nombre\": \"Super V.H.2\",\r\n    \"capacidad\": 12,\r\n    \"descripcion\": \"Liga con capacidad de 12 equipos solo participantes de villa hermsoa 2\"\r\n}",
@@ -531,10 +581,16 @@
 					"name": "Agregar un equipo a liga",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJlZWM1YzJiODY5NWQxM2RmMzE3MGMiLCJpYXQiOjE2OTAyMzQwOTcsImV4cCI6MTY5MDI1MjA5N30.ACfJ2O8Vqb4lO-X75IpXLIfbuFhAPwzyuYWXpPKmOB4",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ligaId\": \"64a303e2c89fdc3018107ff1\"\r\n}",
+							"raw": "{\r\n    \"ligaId\": \"64bef0172b8695d13df31730\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -542,7 +598,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/liga/agregarEquipo/64a30481cdd02463cb671c21",
+							"raw": "localhost:8080/api/liga/agregarEquipo/64bef0b62b8695d13df31738",
 							"host": [
 								"localhost"
 							],
@@ -551,7 +607,7 @@
 								"api",
 								"liga",
 								"agregarEquipo",
-								"64a30481cdd02463cb671c21"
+								"64bef0b62b8695d13df31738"
 							]
 						}
 					},
@@ -667,10 +723,16 @@
 					"name": "Agregar un partido",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJlZWQ1NjJiODY5NWQxM2RmMzE3MjciLCJpYXQiOjE2OTAyMzQ1MDYsImV4cCI6MTY5MDI1MjUwNn0.19ne7cbVvZ6SA1R07-02abaMWJZVrxVkwD8_fSaZIiU",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descripcion\": \"la Gran fianl\",\r\n    \"fecha\": \"01/08/2023\",\r\n    \"liga\": \"Super V.H.2\",\r\n    \"equipo1\": \"Insanos FC\",\r\n    \"equipo2\": \"Rudos\"\r\n}",
+							"raw": "{\r\n    \"descripcion\": \"Inicio de temporada EuroCopa\",\r\n    \"fecha\": \"01/08/2023\",\r\n    \"liga\": \"Super V.H.2\",\r\n    \"equipo1\": \"Insanos FC\",\r\n    \"equipo2\": \"Euro FC\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -775,13 +837,13 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGEzMjQ4NGZiYTNhZWE0YjMyYzU5NmQiLCJpYXQiOjE2ODg0MTYxMjMsImV4cCI6MTY4ODQzNDEyM30.y25GtB_245hH3ZCcFWLSN5YjKYMbRG2xeQDvbJGmvEs",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJmMDQyMDlhZTE3MTE3YTFkZGFjMDkiLCJpYXQiOjE2OTAyNDAwMzIsImV4cCI6MTY5MDI1ODAzMn0.Nt77Ya3-ozt4u67JV_PchSh-tVwefJrTpEu7u4F7gs8",
 								"type": "default"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"comentario\": \"Este partido no me gusto\"\r\n}",
+							"raw": "{\r\n    \"comentario\": \"Esta app es muy buena\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -804,12 +866,54 @@
 					"response": []
 				},
 				{
+					"name": "El que hizo el comentario lo edita",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJmMDQyMDlhZTE3MTE3YTFkZGFjMDkiLCJpYXQiOjE2OTAyNDAwMzIsImV4cCI6MTY5MDI1ODAzMn0.Nt77Ya3-ozt4u67JV_PchSh-tVwefJrTpEu7u4F7gs8",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comentario\": \"Esta app es muy buena.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/comentario/editarPorUsuario/64bf04619ae17117a1ddac10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comentario",
+								"editarPorUsuario",
+								"64bf04619ae17117a1ddac10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Eliminar comentario",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJmMDQyMDlhZTE3MTE3YTFkZGFjMDkiLCJpYXQiOjE2OTAyNDAwMzIsImV4cCI6MTY5MDI1ODAzMn0.Nt77Ya3-ozt4u67JV_PchSh-tVwefJrTpEu7u4F7gs8",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "localhost:8080/api/comentario/eliminar/64a33153a0867362c5bd398c",
+							"raw": "localhost:8080/api/comentario/eliminar/64bf04619ae17117a1ddac10",
 							"host": [
 								"localhost"
 							],
@@ -818,7 +922,7 @@
 								"api",
 								"comentario",
 								"eliminar",
-								"64a33153a0867362c5bd398c"
+								"64bf04619ae17117a1ddac10"
 							]
 						}
 					},
@@ -831,12 +935,12 @@
 						"header": [
 							{
 								"key": "x-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGEzMjQ4NGZiYTNhZWE0YjMyYzU5NmQiLCJpYXQiOjE2ODg0MTgxNDEsImV4cCI6MTY4ODQzNjE0MX0.TSUgBZprJg7v0HvsBhUOQT9-RImw9G_-gSpC1AcBQUo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJmMDQyMDlhZTE3MTE3YTFkZGFjMDkiLCJpYXQiOjE2OTAyNDAwMzIsImV4cCI6MTY5MDI1ODAzMn0.Nt77Ya3-ozt4u67JV_PchSh-tVwefJrTpEu7u4F7gs8",
 								"type": "default"
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/api/comentario/eliminarPorUsuario/64a331780414f321439731dc",
+							"raw": "localhost:8080/api/comentario/eliminarPorUsuario/64bf04619ae17117a1ddac10",
 							"host": [
 								"localhost"
 							],
@@ -845,7 +949,157 @@
 								"api",
 								"comentario",
 								"eliminarPorUsuario",
-								"64a331780414f321439731dc"
+								"64bf04619ae17117a1ddac10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "peticiones noticia",
+			"item": [
+				{
+					"name": "Mostrar noticias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/noticia/mostrar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"noticia",
+								"mostrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar noticia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJlZWQ1NjJiODY5NWQxM2RmMzE3MjciLCJpYXQiOjE2OTAyMzQ1MDYsImV4cCI6MTY5MDI1MjUwNn0.19ne7cbVvZ6SA1R07-02abaMWJZVrxVkwD8_fSaZIiU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tittle\": \"Nueva app\",\r\n    \"noticia\": \"FutiBarrio La nueva app que llevara lo más destacado del deporte.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/noticia/agregar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"noticia",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "El que hizo la noticia lo edita",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJlZWQ1NjJiODY5NWQxM2RmMzE3MjciLCJpYXQiOjE2OTAyMzQ1MDYsImV4cCI6MTY5MDI1MjUwNn0.19ne7cbVvZ6SA1R07-02abaMWJZVrxVkwD8_fSaZIiU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tittle\": \"Nueva app\",\r\n    \"noticia\": \"XD¡¡¡.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/noticia/editarPorUsuario/64bf172ece1ad6a2f0ebfe9e",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"noticia",
+								"editarPorUsuario",
+								"64bf172ece1ad6a2f0ebfe9e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar noticia",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJlZWM1YzJiODY5NWQxM2RmMzE3MGMiLCJpYXQiOjE2OTAyMzQwOTcsImV4cCI6MTY5MDI1MjA5N30.ACfJ2O8Vqb4lO-X75IpXLIfbuFhAPwzyuYWXpPKmOB4",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/noticia/eliminar/64bf13c2ce1ad6a2f0ebfe96",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"noticia",
+								"eliminar",
+								"64bf13c2ce1ad6a2f0ebfe96"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "El que hizo la noticia lo elimina",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NGJlZWQ1NjJiODY5NWQxM2RmMzE3MjciLCJpYXQiOjE2OTAyMzQ1MDYsImV4cCI6MTY5MDI1MjUwNn0.19ne7cbVvZ6SA1R07-02abaMWJZVrxVkwD8_fSaZIiU",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/noticia/eliminarPorUsuario/64bf172ece1ad6a2f0ebfe9e",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"noticia",
+								"eliminarPorUsuario",
+								"64bf172ece1ad6a2f0ebfe9e"
 							]
 						}
 					},

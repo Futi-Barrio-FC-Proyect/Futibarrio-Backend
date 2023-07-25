@@ -25,6 +25,9 @@ const EqupoSchema = Schema({
         type: Number,
         required: true
     },
+    img: {
+        type: String
+    },
 });
 
 module.exports = model('Equipo', EqupoSchema);

@@ -6,13 +6,12 @@ const Partido = require('../models/partidos');
 
 const getPartido = async (req = request, res = response) => {
 
-    const listaPartidos = await Promise.all([
-        Partido.countDocuments(),
-        Partido.find()
-    ]);
+    const listaPartidos = await Partido.find();
+    const cantidadPartidos = await Partido.countDocuments();
 
     res.json({
         msg: 'Mostrando todos los partidos existentes',
+        cantidadPartidos,
         listaPartidos
     });
 

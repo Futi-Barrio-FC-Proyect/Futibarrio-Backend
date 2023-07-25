@@ -6,13 +6,12 @@ const Jugador = require('../models/jugadore');
 
 const getJugador = async (req = request, res = response) => {
 
-    const listaJugadores = await Promise.all([
-        Jugador.countDocuments(),
-        Jugador.find()
-    ]);
+    const listaJugadores = await Jugador.find();
+    const cantidadJugadores = await Jugador.countDocuments();
 
     res.json({
         msg: 'Mostrando todos los jugadores existentes',
+        cantidadJugadores,
         listaJugadores
     });
 

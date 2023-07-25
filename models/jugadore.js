@@ -40,6 +40,9 @@ const JugadorSchema = Schema({
         type: Boolean,
         required: true
     },
+    img: {
+        type: String
+    },
     rol: {
         type: String,
         required: true

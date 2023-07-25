@@ -8,13 +8,12 @@ const Equipo = require('../models/equipo');
 
 const getLiga = async (req = request, res = response) => {
 
-    const listaLigas = await Promise.all([
-        Liga.countDocuments(),
-        Liga.find()
-    ]);
+    const listaLigas = await Liga.find();
+    const cantidadLigas = await Liga.countDocuments();
 
     res.json({
         msg: 'Mostrando todas la ligas existentes',
+        cantidadLigas,
         listaLigas
     });
 

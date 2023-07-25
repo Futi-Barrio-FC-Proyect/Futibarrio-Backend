@@ -7,13 +7,12 @@ const Usuario = require('../models/usuario');
 
 const getComentario = async (req = request, res = response) => {
 
-    const listaComentarios = await Promise.all([
-        Comentario.countDocuments(),
-        Comentario.find()
-    ]);
+    const listaComentarios = await Comentario.find();
+    const cantidadComentarios = await Comentario.countDocuments();
 
     res.json({
         msg: 'Mostrando todos los Comentarios existentes',
+        cantidadComentarios,
         listaComentarios
     });
 
@@ -42,6 +41,28 @@ const postComentario = async (req = request, res = response) => {
         nombreUsuario,
         comentario
     });
+}
+
+const PutComentarioUsuario = async (req = request, res = response) => {
+
+    const { id } = req.params;
+    const usuarioId = req.usuario.id;
+
+    const infoDeComentario = await Comentario.findOne({_id: id});
+    const idUsuarioComentario = infoDeComentario.usuario;
+
+    if (idUsuarioComentario == usuarioId) {
+        const { _id, ...resto } = req.body;
+        const comentarioEditado = await Comentario.findByIdAndUpdate(id, resto);
+        return res.status(401).json({
+            msg: 'Comentario editado',
+            comentarioEditado
+        })
+    } else {
+        return res.status(401).json({
+            msg: 'No tienes permiso para editar este comentario'
+        })
+    }
 }
 
 const deleteComentario = async (req = request, res = response) => {
@@ -82,6 +103,7 @@ const deleteComentarioUsuario = async (req = request, res = response) => {
 module.exports = {
     getComentario,
     postComentario,
+    PutComentarioUsuario,
     deleteComentario,
     deleteComentarioUsuario,
 }

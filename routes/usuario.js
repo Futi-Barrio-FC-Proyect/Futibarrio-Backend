@@ -2,7 +2,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-const { getUsuarios, postUsuario, putUsuario, deleteUsuario, registroUsuario, deleteCuentaUsuario, updateCuentaUsuario } = require('../controllers/usuario');
+const { getUsuarios, postUsuario, putUsuario, deleteUsuario, registroUsuario, deleteCuentaUsuario, updateCuentaUsuario, getMyInfo } = require('../controllers/usuario');
 const { esRoleValido, existeUsuarioPorId, existeUsuario } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
@@ -14,6 +14,10 @@ router.get('/mostrar', [
     validarJWT,
     esAdminAppRole,
 ], getUsuarios);
+
+router.get('/buscarId', [
+    validarJWT
+], getMyInfo);
 
 router.post('/agregar', [
     validarJWT,

@@ -21,6 +21,7 @@ class Server {
             liga: '/api/liga',
             partido: '/api/partido',
             comentario:'/api/comentario',
+            noticia:'/api/noticia',
         }
 
         //Conectar a base de datos
@@ -70,6 +71,7 @@ class Server {
         this.app.use(this.paths.liga, require('../routes/liga'));
         this.app.use(this.paths.partido, require('../routes/partidos'));
         this.app.use(this.paths.comentario, require('../routes/comentarios'));
+        this.app.use(this.paths.noticia, require('../routes/noticias'));
     }
 
 

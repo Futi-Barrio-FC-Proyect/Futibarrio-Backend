@@ -18,6 +18,9 @@ const LigaSchema = Schema({
         type: Array,
         default: [],
     },
+    img: {
+        type: String
+    },
 });
 
 module.exports = model('Liga', LigaSchema);

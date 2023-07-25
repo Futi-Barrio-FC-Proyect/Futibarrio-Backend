@@ -1,43 +1,45 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-const { getComentario, postComentario, deleteComentario, deleteComentarioUsuario, PutComentarioUsuario } = require('../controllers/comentarios');
-const { existecomentarioPorId } = require('../helpers/db-validators');
+const { getNoticias, postNoticias, deleteNoticia, deleteNoticiaUsuario, PutNoticiaUsuario } = require('../controllers/noticias');
+const { existenoticiaPorId } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
-const { esAdminAppRole } = require('../middlewares/validar-roles');
+const { sonAdmins, esAdminAppRole } = require('../middlewares/validar-roles');
 
 const router = Router();
 
 // Obtener todas los productos - publico
-router.get('/mostrar', getComentario);
+router.get('/mostrar', getNoticias);
 
 router.post('/agregar', [
     validarJWT,
-    check('comentario', 'El comentario es obligatorio').not().isEmpty(),
+    sonAdmins,
+    check('tittle', 'El titulo es obligatorio').not().isEmpty(),
+    check('noticia', 'La noticia es obligatorio').not().isEmpty(),
     validarCampos
-], postComentario);
+], postNoticias);
 
 router.put('/editarPorUsuario/:id', [
     validarJWT,
     check('id', 'No es un id de mongo valido').isMongoId(),
-    check('id').custom(existecomentarioPorId),
+    check('id').custom(existenoticiaPorId),
     validarCampos
-], PutComentarioUsuario);
+], PutNoticiaUsuario);
 
 router.delete('/eliminar/:id', [
     validarJWT,
     esAdminAppRole,
     check('id', 'No es un id de mongo valido').isMongoId(),
-    check('id').custom(existecomentarioPorId),
+    check('id').custom(existenoticiaPorId),
     validarCampos
-], deleteComentario);
+], deleteNoticia);
 
 router.delete('/eliminarPorUsuario/:id', [
     validarJWT,
     check('id', 'No es un id de mongo valido').isMongoId(),
-    check('id').custom(existecomentarioPorId),
+    check('id').custom(existenoticiaPorId),
     validarCampos
-], deleteComentarioUsuario);
+], deleteNoticiaUsuario);
 
 module.exports = router;
