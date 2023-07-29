@@ -24,6 +24,7 @@ router.put('/editarPorUsuario/:id', [
     validarJWT,
     check('id', 'No es un id de mongo valido').isMongoId(),
     check('id').custom(existecomentarioPorId),
+    check('liga').custom(existeLigaPorId),
     validarCampos
 ], PutComentarioUsuario);
 

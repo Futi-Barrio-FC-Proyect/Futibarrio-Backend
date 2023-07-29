@@ -21,9 +21,8 @@ const getLiga = async (req = request, res = response) => {
 
 const postLiga = async (req = request, res = response) => {
 
-    
-    const { nombre, capacidad, descripcion,  equipos, } = req.body;
-    const ligaDB = new Liga({ nombre, capacidad, descripcion,  equipos, });
+    const { nombre, capacidad, descripcion, equipos, img } = req.body;
+    const ligaDB = new Liga({ nombre, capacidad, descripcion, equipos, img });
 
     //Guardar en Base de datos
     await ligaDB.save();
@@ -42,11 +41,11 @@ const agregarEquipos = async (req = request, res = response) => {
 
     //traer la informacion de la liga y equipo
     const equipos = await Equipo.findOne({ _id: idEquipo });
-    const liga = await Liga.findOne({ _id: ligaId });
-    const numLigas = liga.equipos;
+    const ligaInfo = await Liga.findOne({ _id: ligaId });
+    const numLigas = ligaInfo.equipos;
     //ver si un equipo ya esta en la liga
     for (let equipo = 0; equipo < numLigas.length; equipo++) {
-        arrayEquiposId = [liga.equipos[equipo]._id]
+        arrayEquiposId = [ligaInfo.equipos[equipo]._id]
         if (arrayEquiposId == idEquipo) {
             res.json({
                 msg: `El equipo: ${equipos.nombre} ya está en la liga.`,
@@ -55,17 +54,28 @@ const agregarEquipos = async (req = request, res = response) => {
         }
     }
 
-    //guardar equipo
-    const ligaConEquipo = await Liga.findOneAndUpdate(
-        { _id: liga._id },
-        { $push: { 'equipos': equipos } },
-        { new: true }
-    );
+    if (equipos.liga != null) {
+        res.json({
+            msg: `El equipo: ${equipos.nombre} ya esta en una liga.`,
+        });
+        return false;
+    } else {
+        //guardar la liga al equipo agregado
+        const liga = ligaInfo.nombre;
+        const equipoActualizado = await Equipo.findByIdAndUpdate(idEquipo, { $set: { liga } });
+        const equipos = await Equipo.findOne({ _id: idEquipo });
+        //guardar equipo
+        const ligaConEquipo = await Liga.findOneAndUpdate(
+            { _id: ligaInfo._id },
+            { $push: { 'equipos': equipos } },
+            { new: true }
+        );
 
-    res.json({
-        msg: 'Liga actualizada ' + (numLigas.length + 1) + ' equipos en la liga.',
-        ligaConEquipo
-    })
+        res.json({
+            msg: 'Liga actualizada ' + (numLigas.length + 1) + ' equipos en la liga.',
+            ligaConEquipo
+        })
+    }
 
 }
 
@@ -76,8 +86,8 @@ const eliminarEquipos = async (req = request, res = response) => {
 
     //traer la informacion de la liga y equipo
     const equipos = await Equipo.findOne({ _id: idEquipo });
-    const liga = await Liga.findOne({ _id: ligaId });
-    const ligasInfo = liga.equipos;
+    const ligaInfo = await Liga.findOne({ _id: ligaId });
+    const ligasInfo = ligaInfo.equipos;
     //verificar si existen equipos en la liga
     if (ligasInfo.length == 0) {
         res.json({
@@ -86,11 +96,15 @@ const eliminarEquipos = async (req = request, res = response) => {
     } else {
         //ver si un jugador ya esta en el equipo
         for (let equipo = 0; equipo < ligasInfo.length; equipo++) {
-            arrayEquiposId = [liga.equipos[equipo]._id]
+            arrayEquiposId = [ligaInfo.equipos[equipo]._id]
             if (arrayEquiposId == idEquipo) {
+                //eliminar la liga al equipo
+                const liga = null;
+                const equipoActualizado = await Equipo.findByIdAndUpdate(idEquipo, { $set: { liga } });
+                //eliminar Jugador
                 //eliminar equipo
                 const ligaActualizado = await Liga.findOneAndUpdate(
-                    { _id: liga._id },
+                    { _id: ligaInfo._id },
                     { $pull: { 'equipos': equipos } },
                     { new: true }
                 );
@@ -129,6 +143,16 @@ const deleteLiga = async (req = request, res = response) => {
     const { id } = req.params;
     //Eliminar fisicamente de la DB
     const ligaEliminado = await Liga.findByIdAndDelete(id);
+    const nombreLiga = ligaEliminado.nombre;
+    const equipos = await Equipo.find();
+    for (let i = 0; i < equipos.length; i++) {
+        const element = equipos[i];
+        if (element.liga == nombreLiga) {
+            //eliminar la liga al quipo
+            const liga = null;
+            const equipoActualizado = await Equipo.findByIdAndUpdate(element.id, { $set: { liga } });
+        }
+    }
 
     res.json({
         msg: 'DELETE liga',

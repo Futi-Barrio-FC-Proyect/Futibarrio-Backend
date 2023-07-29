@@ -43,8 +43,8 @@ const getUsuarios = async (req = request, res = response) => {
 
 const postUsuario = async (req = request, res = response) => {
 
-    const { nombre, usuario, password, rol } = req.body;
-    const usuarioDB = new Usuario({ nombre, usuario, password, rol });
+    const { nombre, usuario, password, rol, img } = req.body;
+    const usuarioDB = new Usuario({ nombre, usuario, password, rol, img });
 
     if (rol == 'ADMIN_APP_ROLE') {
         res.json({
@@ -116,15 +116,22 @@ const deleteUsuario = async (req = request, res = response) => {
 
 const registroUsuario = async (req = request, res = response) => {
     const { nombre, usuario, password } = req.body;
+    //Validar si la liga ya esta registrada en la base de datos
+    const UsuarioDB = await Usuario.findOne({ usuario });
+    if (UsuarioDB) {
+        return res.status(404).json({
+            msg: `El usuario: ${usuario} ya existe en la DB`
+        })
+    }
     const usuarioRegistrado = new Usuario({ nombre, usuario, password });
     const salt = bcryptjs.genSaltSync();
     usuarioRegistrado.password = bcryptjs.hashSync(password, salt);
-    
+
     await usuarioRegistrado.save();
 
-    const usuarioId = await Usuario.findOne( { usuario } );
+    const usuarioId = await Usuario.findOne({ usuario });
     //Generar JWT
-    const token = await generarJWT( usuarioId.id, usuarioId.rol );
+    const token = await generarJWT(usuarioId.id, usuarioId.rol);
 
     res.status(201).json({
         msg: 'Nuevo usuario registrado',

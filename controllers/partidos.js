@@ -20,8 +20,8 @@ const getPartido = async (req = request, res = response) => {
 //validar si el equipo existe y si el equipo 1 es igual al 2
 const postPartido = async (req = request, res = response) => {
 
-    const { descripcion, fecha, liga, equipo1, equipo2 } = req.body;
-    const partidoDB = new Partido({ descripcion, fecha, liga, equipo1, equipo2 });
+    const { descripcion, fecha, liga, equipo1, equipo2,img } = req.body;
+    const partidoDB = new Partido({ descripcion, fecha, liga, equipo1, equipo2, img });
 
     if (equipo1 == equipo2) {
         res.json({

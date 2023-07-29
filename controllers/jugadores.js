@@ -3,6 +3,7 @@ const { response, request } = require('express');
 
 //Modelos
 const Jugador = require('../models/jugadore');
+const Equipo = require('../models/equipo');
 
 const getJugador = async (req = request, res = response) => {
 
@@ -22,13 +23,13 @@ const postJugador = async (req = request, res = response) => {
     const {
         nombre, nombreCamiseta, numerojugador, edad, equipoActual,
         equiposParticipado, golesMarcados, posición, partidos, reconocimientos,
-        estado, rol
+        estado, img, rol
     } = req.body;
 
     const jugadorDB = new Jugador({
         nombre, nombreCamiseta, numerojugador, edad, equipoActual,
         equiposParticipado, golesMarcados, posición, partidos, reconocimientos,
-        estado, rol
+        estado, img, rol
     });
 
     //Guardar en Base de datos
@@ -44,7 +45,7 @@ const postJugador = async (req = request, res = response) => {
 const putjugador = async (req = request, res = response) => {
 
     const { id } = req.params;
-    const { _id, ...restoData } = req.body;
+    const { _id, equipoActual, ...restoData } = req.body;
     
     const jugadorActualizado = await Jugador.findByIdAndUpdate(id, restoData);
     res.status(201).json({
@@ -59,14 +60,29 @@ const deleteJugador = async (req = request, res = response) => {
 
     const { id } = req.params;
     //Eliminar fisicamente de la DB
-    const jugadorEliminado = await Jugador.findByIdAndDelete( id );
-
-   res.json({
-        msg: 'DELETE jugador',
-        //productoEliminado,
-        jugadorEliminado
-   });
-
+    const jugadorEliminado = await Jugador.findByIdAndDelete(id);
+    const equipoJugador = jugadorEliminado.equipoActual;
+    const equipo = await Equipo.find();
+    for (let i = 0; i < equipo.length; i++) {
+        const infoEquipo = equipo[i];
+        if (equipoJugador == infoEquipo.nombre) {
+            const equipoActualizar = await Equipo.findById(infoEquipo.id);
+            const equipoYJugador = equipoActualizar.jugadores;
+            for (let i = 0; i < equipoYJugador.length; i++) {
+                const juagdoresArray = equipoYJugador[i];
+                const idJugadores = juagdoresArray._id;
+                if (idJugadores.toString() == id) {
+                    equipoYJugador.splice(i, 1);
+                    await equipoActualizar.save();
+                }
+            }
+            res.json({
+                msg: 'DELETE jugador',
+                //productoEliminado,
+                jugadorEliminado
+            });
+        } return false;
+    }
 }
 
 module.exports = {

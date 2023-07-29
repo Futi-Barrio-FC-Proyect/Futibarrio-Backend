@@ -26,7 +26,7 @@ const postComentario = async (req = request, res = response) => {
     //Generar data a guardar
     const data = {
         ...body,
-        usuario: req.usuario._id
+        usuario: req.usuario.usuario
     }
 
     const usuarioinfo = await Usuario.findOne({ _id: req.usuario._id });
@@ -53,12 +53,13 @@ const postComentario = async (req = request, res = response) => {
 const PutComentarioUsuario = async (req = request, res = response) => {
 
     const { id } = req.params;
-    const usuarioId = req.usuario.id;
+    const usuarioUser = req.usuario.usuario;
 
     const infoDeComentario = await Comentario.findOne({ _id: id });
+    
     const idUsuarioComentario = infoDeComentario.usuario;
 
-    if (idUsuarioComentario == usuarioId) {
+    if (idUsuarioComentario == usuarioUser) {
         const { _id, ...resto } = req.body;
         const comentarioEditado = await Comentario.findByIdAndUpdate(id, resto);
         return res.status(401).json({
@@ -82,7 +83,7 @@ const deleteComentario = async (req = request, res = response) => {
     const ligaComentario = liga.comentario;
     for (let i = 0; i < ligaComentario.length; i++) {
         const comentarioArray = ligaComentario[i];
-        if (ligaComentario.toString() == id) {
+        if (comentarioArray.toString() == id) {
             liga.comentario.splice(i, 1);
             await liga.save();
         }
@@ -99,18 +100,19 @@ const deleteComentario = async (req = request, res = response) => {
 const deleteComentarioUsuario = async (req = request, res = response) => {
 
     const { id } = req.params;
-    const usuarioId = req.usuario.id;
+    const usuarioUser = req.usuario.usuario;
 
     const infoDeComentario = await Comentario.findOne({ _id: id });
     const idUsuarioComentario = infoDeComentario.usuario;
 
-    if (idUsuarioComentario == usuarioId) {
+    if (idUsuarioComentario == usuarioUser) {
         const comentarioEliminado = await Comentario.findByIdAndDelete(id);
         const liga = await Liga.findById(comentarioEliminado.liga);
         const ligaComentario = liga.comentario;
+        console.log(id);
         for (let i = 0; i < ligaComentario.length; i++) {
             const comentarioArray = ligaComentario[i];
-            if (ligaComentario.toString() == id) {
+            if (comentarioArray.toString() == id) {
                 liga.comentario.splice(i, 1);
                 await liga.save();
             }

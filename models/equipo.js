@@ -21,6 +21,10 @@ const EqupoSchema = Schema({
         type: Array,
         default: [],
     },
+    liga: {
+        type: String,
+        default: null,
+    },
     puntaje: {
         type: Number,
         required: true

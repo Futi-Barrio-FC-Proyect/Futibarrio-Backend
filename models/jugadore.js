@@ -18,6 +18,7 @@ const JugadorSchema = Schema({
     },
     equipoActual: {
         type: String,
+        default: null,
     },
     equiposParticipado: {
         type: String,

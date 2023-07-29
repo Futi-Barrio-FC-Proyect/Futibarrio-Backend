@@ -65,7 +65,7 @@ router.delete('/eliminarmicuenta/:id', [
 router.post('/register', [
     check('nombre', 'El nombre es obligatorio para registrase').not().isEmpty(),
     check('usuario', 'El nombre es obligatorio para registrase').not().isEmpty(),
-    check('usuario').custom(existeUsuario),
+    // check('usuario').custom(existeUsuario),
     check('password', 'El nombre es obligatorio para registrase').not().isEmpty(),
     validarCampos
 ], registroUsuario)
