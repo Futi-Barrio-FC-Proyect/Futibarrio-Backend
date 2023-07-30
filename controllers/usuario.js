@@ -184,8 +184,6 @@ const updateCuentaUsuario = async (req = request, res = response) => {
 
 const getMyInfo = async (req = request, res = response) => {
     const usuarioId = req.usuario.id;
-    console.log(usuarioId);
-
     const usuarioById = await Usuario.findById(usuarioId);
 
     const comentariosUsuario = await Comentario.find({ usuario: usuarioId });
