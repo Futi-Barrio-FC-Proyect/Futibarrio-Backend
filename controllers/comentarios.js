@@ -62,7 +62,7 @@ const postComentario = async (req = request, res = response) => {
         { new: true }
     );
 
-    res.status(201).json({
+    res.json({
         msg: 'Comentario creado con éxito.',
         nombreUsuario,
         comentario
@@ -86,7 +86,7 @@ const PutComentarioUsuario = async (req = request, res = response) => {
             comentarioEditado
         })
     } else {
-        return res.status(401).json({
+        return res.json({
             msg: 'No tienes permiso para editar este comentario'
         })
     }
@@ -142,7 +142,7 @@ const deleteComentarioUsuario = async (req = request, res = response) => {
             comentarioEliminado
         })
     } else {
-        return res.status(401).json({
+        return res.json({
             msg: 'No tienes permiso para eliminar este comentario'
         })
     }

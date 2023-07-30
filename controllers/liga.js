@@ -27,7 +27,7 @@ const postLiga = async (req = request, res = response) => {
     //Guardar en Base de datos
     await ligaDB.save();
 
-    res.status(201).json({
+    res.json({
         msg: 'Liga creado con exito',
         ligaDB
     });
@@ -130,7 +130,7 @@ const putLiga = async (req = request, res = response) => {
     const { _id, ...restoData } = req.body;
 
     const ligaActualizada = await Liga.findByIdAndUpdate(id, restoData);
-    res.status(201).json({
+    res.json({
         msg: 'Put Controller liga actualizado',
         ligaActualizada
     });

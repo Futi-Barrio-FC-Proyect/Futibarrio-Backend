@@ -32,7 +32,7 @@ const postPartido = async (req = request, res = response) => {
         //Guardar en Base de datos
         await partidoDB.save();
 
-        res.status(201).json({
+        res.json({
             msg: 'Partido creado con exito',
             partidoDB
         });
@@ -45,7 +45,7 @@ const putPartido = async (req = request, res = response) => {
     const { _id, ...restoData } = req.body;
 
     const partidoActualizado = await Partido.findByIdAndUpdate(id, restoData);
-    res.status(201).json({
+    res.json({
         msg: 'Put Controller partido actualizado',
         partidoActualizado
     });

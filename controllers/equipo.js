@@ -28,7 +28,7 @@ const postEquipo = async (req = request, res = response) => {
     //Guardar en Base de datos
     await equipoDB.save();
 
-    res.status(201).json({
+    res.json({
         msg: 'Equipo creado con exito',
         equipoDB
     });
@@ -134,7 +134,7 @@ const putEquipo = async (req = request, res = response) => {
     const { _id, liga, ...restoData } = req.body;
 
     const equipoActualizado = await Equipo.findByIdAndUpdate(id, restoData);
-    res.status(201).json({
+    res.json({
         msg: 'Put Controller equipo actualizado',
         equipoActualizado
     });

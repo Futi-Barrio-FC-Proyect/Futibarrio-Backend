@@ -35,7 +35,7 @@ const postNoticias = async (req = request, res = response) => {
     //Guardar en DB
     await noticia.save();
 
-    res.status(201).json({
+    res.json({
         msg: 'Noticia creado con éxito.',
         nombreUsuario,
         noticia
@@ -53,12 +53,12 @@ const PutNoticiaUsuario = async (req = request, res = response) => {
     if (idUsuarioNoticia == usuarioId) {
         const { _id, ...resto } = req.body;
         const noticiaEditado = await Noticia.findByIdAndUpdate(id, resto);
-        return res.status(401).json({
+        return res.json({
             msg: 'Noticia editado',
             noticiaEditado
         })
     } else {
-        return res.status(401).json({
+        return res.json({
             msg: 'No tienes permiso para editar esta noticia'
         })
     }
@@ -93,7 +93,7 @@ const deleteNoticiaUsuario = async (req = request, res = response) => {
             noticiaEliminado
         })
     } else {
-        return res.status(401).json({
+        return res.json({
             msg: 'No tienes permiso para eliminar esta noticia'
         })
     }

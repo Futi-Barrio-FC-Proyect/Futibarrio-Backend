@@ -58,7 +58,7 @@ const postUsuario = async (req = request, res = response) => {
         //Guardar en Base de datos
         await usuarioDB.save();
 
-        res.status(201).json({
+        res.json({
             msg: 'Usuario creado con exito',
             usuarioDB
         });
@@ -73,7 +73,7 @@ const putUsuario = async (req = request, res = response) => {
     const rolDB = await Role.findOne({ rol: 'ADMIN_APP_ROLE' })
     const usuario = await Usuario.findOne({ _id: id })
     if (usuario.rol == rolDB.rol) {
-        return res.status(401).json({
+        return res.json({
             msg: "No se puede editar un admin"
         });
     }
@@ -99,7 +99,7 @@ const deleteUsuario = async (req = request, res = response) => {
     const rolDB = await Role.findOne({ rol: 'ADMIN_APP_ROLE' })
     const usuario = await Usuario.findOne({ _id: id })
     if (usuario.rol == rolDB.rol) {
-        return res.status(401).json({
+        return res.json({
             msg: "No se puede eliminar a un admin"
         });
     }
@@ -119,7 +119,7 @@ const registroUsuario = async (req = request, res = response) => {
     //Validar si la liga ya esta registrada en la base de datos
     const UsuarioDB = await Usuario.findOne({ usuario });
     if (UsuarioDB) {
-        return res.status(404).json({
+        return res.json({
             msg: `El usuario: ${usuario} ya existe en la DB`
         })
     }
@@ -133,7 +133,7 @@ const registroUsuario = async (req = request, res = response) => {
     //Generar JWT
     const token = await generarJWT(usuarioId.id, usuarioId.rol);
 
-    res.status(201).json({
+    res.json({
         msg: 'Nuevo usuario registrado',
         usuarioRegistrado,
         token
@@ -154,7 +154,7 @@ const deleteCuentaUsuario = async (req = request, res = response) => {
             usuarioEliminado
         })
     } else {
-        return res.status(401).json({
+        return res.json({
             msg: 'No tienes permiso para eliminar este usuario'
         })
     }
@@ -176,7 +176,7 @@ const updateCuentaUsuario = async (req = request, res = response) => {
             usuarioEditado
         })
     } else {
-        return res.status(401).json({
+        return res.json({
             msg: 'No tienes permiso para editar este usuario'
         })
     }

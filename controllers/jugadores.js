@@ -35,7 +35,7 @@ const postJugador = async (req = request, res = response) => {
     //Guardar en Base de datos
     await jugadorDB.save();
 
-    res.status(201).json({
+    res.json({
         msg: 'Jugador creado con exito',
         jugadorDB
     });
@@ -48,7 +48,7 @@ const putjugador = async (req = request, res = response) => {
     const { _id, equipoActual, ...restoData } = req.body;
     
     const jugadorActualizado = await Jugador.findByIdAndUpdate(id, restoData);
-    res.status(201).json({
+    res.json({
         msg: 'Put Controller jugador actualizado',
         jugadorActualizado
     });
