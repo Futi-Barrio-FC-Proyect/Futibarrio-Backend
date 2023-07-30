@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-const { getComentario, postComentario, deleteComentario, deleteComentarioUsuario, PutComentarioUsuario } = require('../controllers/comentarios');
+const { getComentario, postComentario, deleteComentario, deleteComentarioUsuario, PutComentarioUsuario, getMisComentarios } = require('../controllers/comentarios');
 const { existecomentarioPorId, existeLigaPorId } = require('../helpers/db-validators');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
@@ -11,6 +11,10 @@ const router = Router();
 
 // Obtener todas los productos - publico
 router.get('/mostrar', getComentario);
+
+router.get('/misComentarios', [
+    validarJWT,
+], getMisComentarios);
 
 router.post('/agregar', [
     validarJWT,

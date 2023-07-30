@@ -19,6 +19,25 @@ const getComentario = async (req = request, res = response) => {
 
 }
 
+const getMisComentarios = async (req = request, res = response) => {
+
+    const usuarioUser = req.usuario.usuario;
+const listMisComentarios = [];
+    const listaComentarios = await Comentario.find();
+    for (let i = 0; i < listaComentarios.length; i++) {
+        const element = listaComentarios[i];
+        if (element.usuario == usuarioUser) {
+            const userComentarios = await Comentario.findById(element.id);
+            const guardarComentarios = listMisComentarios.push(userComentarios);
+        }
+    }
+
+    res.json({
+        msg: 'Mostrando todos los Comentarios de este usuario.',
+        listMisComentarios
+    });
+}
+
 const postComentario = async (req = request, res = response) => {
 
     //operador spread
@@ -56,7 +75,7 @@ const PutComentarioUsuario = async (req = request, res = response) => {
     const usuarioUser = req.usuario.usuario;
 
     const infoDeComentario = await Comentario.findOne({ _id: id });
-    
+
     const idUsuarioComentario = infoDeComentario.usuario;
 
     if (idUsuarioComentario == usuarioUser) {
@@ -131,6 +150,7 @@ const deleteComentarioUsuario = async (req = request, res = response) => {
 
 module.exports = {
     getComentario,
+    getMisComentarios,
     postComentario,
     PutComentarioUsuario,
     deleteComentario,
