@@ -149,7 +149,7 @@ const deleteCuentaUsuario = async (req = request, res = response) => {
 
     if (id === usuarioId) {
         const usuarioEliminado = await Usuario.findByIdAndDelete(id);
-        return res.status(401).json({
+        return res.json({
             msg: 'Cuenta eliminada',
             usuarioEliminado
         })

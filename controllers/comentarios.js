@@ -81,7 +81,7 @@ const PutComentarioUsuario = async (req = request, res = response) => {
     if (idUsuarioComentario == usuarioUser) {
         const { _id, ...resto } = req.body;
         const comentarioEditado = await Comentario.findByIdAndUpdate(id, resto);
-        return res.status(401).json({
+        return res.json({
             msg: 'Comentario editado',
             comentarioEditado
         })
@@ -137,7 +137,7 @@ const deleteComentarioUsuario = async (req = request, res = response) => {
             }
 
         }
-        return res.status(401).json({
+        return res.json({
             msg: 'Comentario eliminado',
             comentarioEliminado
         })

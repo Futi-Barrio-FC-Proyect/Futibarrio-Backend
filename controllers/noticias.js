@@ -88,7 +88,7 @@ const deleteNoticiaUsuario = async (req = request, res = response) => {
 
     if (idUsuarioNoticia == usuarioId) {
         const noticiaEliminado = await Noticia.findByIdAndDelete(id);
-        return res.status(401).json({
+        return res.json({
             msg: 'Noticia eliminado',
             noticiaEliminado
         })
