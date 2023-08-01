@@ -20,9 +20,9 @@ router.post('/agregar', [
     check('edad', 'La edad es obligatorio para el post').not().isEmpty(),
     check('partidos', 'los partidos jugados es obligatorio para el post').not().isEmpty(),
     check('reconocimientos', 'los reconociemintos del jugador es obligatorio para el post').not().isEmpty(),
-    check('estado', 'El estado del jugador es obligatorio para el post').not().isEmpty(),
-    check('rol', 'El rol de participnte es obligatorio para el post').not().isEmpty(),
-    check('rol').custom(esRoleValido),
+    // check('estado', 'El estado del jugador es obligatorio para el post').not().isEmpty(),
+    // check('rol', 'El rol de participnte es obligatorio para el post').not().isEmpty(),
+    // check('rol').custom(esRoleValido),
     validarCampos
 ], postJugador);
 
@@ -32,7 +32,7 @@ router.put('/editar/:id', [
     esAdminCampRole,
     check('id', 'No es un ID valido').isMongoId(),
     check('id').custom(existeJugadorPorId),
-    check('rol').custom(esRoleValido),
+    // check('rol').custom(esRoleValido),
     validarCampos
 ], putjugador);
 
