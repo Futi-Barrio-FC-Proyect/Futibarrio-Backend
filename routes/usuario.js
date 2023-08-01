@@ -28,7 +28,7 @@ router.post('/agregar', [
     check('password', 'La password es obligatorio para el post').not().isEmpty(),
     check('password', 'La passwarod debe ser mayor a 6 letras').isLength({ min: 6 }),
     check('rol', 'El rol es obligatorio para el post').not().isEmpty(),
-    check('rol').custom(esRoleValido),
+    // check('rol').custom(esRoleValido),
     validarCampos,
     
 ], postUsuario);
