@@ -13,7 +13,7 @@ const defaultAdminApp = async () => {
     try {
         let user = new Usuario();
         user.nombre = "Shiro Salas";
-        user.usuario = "@AdminShiro";
+        user.usuario = "@Admin";
         user.password = "123456";
         user.rol = "ADMIN_APP_ROLE";
         const userEncontrado = await Usuario.findOne({ usuario: user.usuario });
